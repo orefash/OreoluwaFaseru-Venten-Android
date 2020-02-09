@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@drawable/item_bg"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="@dimen/element_height"
+    android:id="@+id/filterView"
+    android:layout_marginBottom="@dimen/element_height"
+    android:clickable="true"
+    android:focusable="true"
+    android:orientation="vertical">
+
+
+    <TextView
+
+        android:id="@+id/dateRangeTxt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="15dp"
+        android:text="2000 - 2005"
+        android:textColor="@color/colorWhite"
+        android:textSize="@dimen/line_font_size"
+        app:layout_constraintStart_toEndOf="@+id/dt_rangetv"
+        app:layout_constraintTop_toTopOf="@+id/dt_rangetv" />
+
+    <TextView
+        android:id="@+id/genderTxt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Male"
+        android:textAllCaps="true"
+        android:textColor="@color/colorWhite"
+        android:textSize="@dimen/line_font_size"
+        app:layout_constraintStart_toStartOf="@+id/dateRangeTxt"
+        app:layout_constraintTop_toTopOf="@+id/genderTV" />
+
+    <TextView
+        android:id="@+id/countryTV"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Countries:"
+        android:layout_marginTop="@dimen/line_height"
+        android:textSize="@dimen/line_font_size"
+        android:textColor="@color/colorLGrey"
+        app:layout_constraintStart_toStartOf="@+id/genderTV"
+        app:layout_constraintTop_toBottomOf="@+id/genderTxt" />
+
+    <TextView
+        android:id="@+id/dt_rangetv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Date Range:"
+        android:textSize="@dimen/line_font_size"
+        android:textColor="@color/colorLGrey"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/genderTV"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Gender:"
+        android:textColor="@color/colorLGrey"
+        android:layout_marginTop="@dimen/line_height"
+        android:textSize="@dimen/line_font_size"
+        app:layout_constraintStart_toStartOf="@+id/dt_rangetv"
+        app:layout_constraintTop_toBottomOf="@+id/dateRangeTxt" />
+
+    <TextView
+        android:id="@+id/colorTV"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/line_height"
+        android:text="Color:"
+        android:textColor="@color/colorLGrey"
+        android:textSize="@dimen/line_font_size"
+        app:layout_constraintStart_toStartOf="@+id/countryTV"
+        app:layout_constraintTop_toBottomOf="@+id/countryTxt" />
+
+    <TextView
+        android:id="@+id/countryTxt"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="US, CHina, France"
+        android:textAllCaps="true"
+        android:textColor="@color/colorWhite"
+        android:textSize="@dimen/line_font_size"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/genderTxt"
+        app:layout_constraintTop_toTopOf="@+id/countryTV" />
+
+    <TextView
+        android:id="@+id/colorTxt"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="Red, Yellow, Blue"
+        android:textAllCaps="true"
+        android:textSize="@dimen/line_font_size"
+        android:textColor="@color/colorWhite"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/countryTxt"
+        app:layout_constraintTop_toTopOf="@+id/colorTV" />
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,0 +1,203 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:padding="@dimen/line_height"
+    android:background="@drawable/item_bg"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="wrap_content"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:id="@+id/yearTxt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="15dp"
+        android:text="2018"
+        android:textAllCaps="true"
+        android:textColor="@color/colorWhite"
+        android:textSize="@dimen/line_font_size"
+        android:layout_marginEnd="@dimen/line_height"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/yearTV"
+        app:layout_constraintTop_toTopOf="@+id/yearTV" />
+
+    <TextView
+        android:id="@+id/yearTV"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="Year:"
+        android:textColor="@color/colorLGrey"
+        android:textSize="@dimen/line_font_size"
+        app:layout_constraintStart_toStartOf="@+id/guideline2"
+        app:layout_constraintTop_toTopOf="@+id/colorTxt" />
+
+    <TextView
+        android:id="@+id/colorTxt"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="YELLOW"
+        android:textAllCaps="true"
+        android:textColor="@color/colorWhite"
+        android:textSize="@dimen/line_font_size"
+        app:layout_constraintEnd_toStartOf="@+id/guideline2"
+        app:layout_constraintStart_toStartOf="@+id/cmakeTxt"
+        app:layout_constraintTop_toTopOf="@+id/colorTV" />
+
+    <TextView
+        android:id="@+id/colorTV"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Color:"
+        android:layout_marginTop="@dimen/line_height"
+        app:layout_constraintTop_toBottomOf="@+id/cmakeTxt"
+        android:textColor="@color/colorLGrey"
+        android:textSize="@dimen/line_font_size"
+        app:layout_constraintStart_toStartOf="@+id/cmakeTV"
+        tools:layout_editor_absoluteY="247dp" />
+
+    <TextView
+        android:id="@+id/cmakeTxt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="TOYOTA"
+        android:textAllCaps="true"
+        android:textColor="@color/colorWhite"
+        android:textSize="@dimen/line_font_size"
+        app:layout_constraintStart_toStartOf="@+id/countryTxt"
+        app:layout_constraintTop_toTopOf="@+id/cmakeTV" />
+
+    <TextView
+        android:id="@+id/cmakeTV"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Car Make:"
+        android:textColor="@color/colorLGrey"
+        android:textSize="@dimen/line_font_size"
+        android:layout_marginTop="@dimen/line_height"
+        app:layout_constraintStart_toStartOf="@id/countryTV"
+        app:layout_constraintTop_toBottomOf="@+id/countryTxt" />
+
+    <TextView
+        android:id="@+id/countryTxt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="FRANCE"
+        android:textAllCaps="true"
+        android:textColor="@color/colorWhite"
+        android:textSize="@dimen/line_font_size"
+        app:layout_constraintStart_toStartOf="@+id/emailTxt"
+        app:layout_constraintTop_toTopOf="@+id/countryTV" />
+
+    <TextView
+        android:id="@+id/countryTV"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Country:"
+        android:textColor="@color/colorLGrey"
+        android:textSize="@dimen/line_font_size"
+        android:layout_marginTop="@dimen/line_height"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/emailTxt" />
+
+    <TextView
+        android:id="@+id/emailTxt"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:maxLines="2"
+
+        android:text="OREFASH@gmail.com"
+        android:textAllCaps="true"
+        android:textColor="@color/colorWhite"
+        android:textSize="@dimen/line_font_size"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/jtitleTxt"
+        app:layout_constraintTop_toTopOf="@+id/emailTV" />
+
+    <TextView
+        android:id="@+id/emailTV"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Email:"
+        android:textColor="@color/colorLGrey"
+        android:textSize="@dimen/line_font_size"
+        android:layout_marginTop="@dimen/line_height"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/jtitleTxt" />
+
+    <TextView
+        android:id="@+id/jtitleTxt"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:maxLines="2"
+        android:text="accountant"
+        android:textAllCaps="true"
+        android:textColor="@color/colorWhite"
+        android:textSize="@dimen/line_font_size"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/genderTxt"
+        app:layout_constraintTop_toTopOf="@+id/jtitleTV" />
+
+    <TextView
+        android:id="@+id/jtitleTV"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Job Title:"
+        android:textColor="@color/colorLGrey"
+        android:textSize="@dimen/line_font_size"
+        android:layout_marginTop="@dimen/line_height"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/genderTxt" />
+
+    <TextView
+        android:id="@+id/genderTxt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="MALE"
+        android:textAllCaps="true"
+        android:textColor="@color/colorWhite"
+        android:textSize="@dimen/line_font_size"
+        app:layout_constraintStart_toStartOf="@+id/fnameText"
+        app:layout_constraintTop_toTopOf="@+id/genderTV" />
+
+    <TextView
+        android:id="@+id/genderTV"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Gender:"
+        android:layout_marginTop="@dimen/line_height"
+        android:textColor="@color/colorLGrey"
+        android:textSize="@dimen/line_font_size"
+        app:layout_constraintStart_toStartOf="@+id/fnameTV"
+        app:layout_constraintTop_toBottomOf="@+id/fnameTV" />
+
+    <TextView
+        android:id="@+id/fnameText"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/line_height"
+        android:text="OREOLUWA FASERU"
+        android:textAllCaps="true"
+        android:textColor="@color/colorWhite"
+        android:textSize="@dimen/line_font_size"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/fnameTV"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:textSize="@dimen/line_font_size"
+        android:textColor="@color/colorLGrey"
+        android:id="@+id/fnameTV"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Full Name:"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.7
+"/>
+</androidx.constraintlayout.widget.ConstraintLayout>

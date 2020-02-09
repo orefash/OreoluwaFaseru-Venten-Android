@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">OreoluwaFaseru</string>
+    <string name="no_owner_head">No Car Owners matching your filter</string>
+    <string name="no_owner_msg">Please Try Another Filter</string>
+    <string name="no_owner_btn">CHANGE FILTERS</string>
+
+    <string name="no_conn_head">Filters Are Unavailable</string>
+    <string name="no_conn_msg">Check Your Connection and Try Again</string>
+    <string name="no_conn_btn">LOAD FILTERS</string>
+</resources>
