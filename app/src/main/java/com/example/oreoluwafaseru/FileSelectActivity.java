@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.os.Environment;
 import android.util.Log;
 import android.view.View;
 import android.view.animation.AlphaAnimation;
@@ -14,9 +15,15 @@ import android.widget.Button;
 import android.widget.FrameLayout;
 import android.widget.Toast;
 
+import com.example.oreoluwafaseru.utils.FileConfig;
 import com.example.oreoluwafaseru.utils.OwnerDataManager;
 
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.nio.channels.FileChannel;
 
 public class FileSelectActivity extends AppCompatActivity {
 
@@ -34,6 +41,8 @@ public class FileSelectActivity extends AppCompatActivity {
         Button browseBtn = findViewById(R.id.browseBtn);
 
         progressHolder = findViewById(R.id.progress_overlay);
+
+        FileConfig.verifyStoragePermission(this);
 
         browseBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -55,20 +64,80 @@ public class FileSelectActivity extends AppCompatActivity {
         if (requestCode == REQUEST_CODE) {
             Uri filePath = data.getData();
 
+
             Log.e("file select" , filePath.getPath());
-            Log.e("file select" , new File(filePath.getPath()).getName());
+            Log.e("file select" , Environment.getExternalStorageDirectory().getAbsolutePath());
+            if(FileConfig.fileName.equals(new File(filePath.getPath()).getName())){
+                Log.e("file select" , new File(filePath.getPath()).getName());
 
-            if (resultCode == RESULT_OK) {
-                Log.e("file select" , "RES ok");
-                new DataStoreOperation(filePath).execute();
-            } else {
+                if (resultCode == RESULT_OK) {
+                    Log.e("file select" , "RES ok");
 
+                    performDataLoad(filePath);
+//                    new DataStoreOperation(filePath).execute();
+                } else {
+
+
+                }
+            }else{
+                Toast.makeText(getApplicationContext(), "You selected the wrong file", Toast.LENGTH_SHORT).show();
+                Log.e("wrong file select" , new File(filePath.getPath()).getName());
             }
+
+
         }
 
     }
 
-    private final class DataStoreOperation extends AsyncTask<Void, Void, String> {
+    private void beforeLoad(){
+        inAnimation = new AlphaAnimation(0f, 1f);
+        inAnimation.setDuration(200);
+        progressHolder.setAnimation(inAnimation);
+        progressHolder.setVisibility(View.VISIBLE);
+    }
+    private void afterLoad(){
+        outAnimation = new AlphaAnimation(1f, 0f);
+        outAnimation.setDuration(200);
+        progressHolder.setAnimation(outAnimation);
+        progressHolder.setVisibility(View.GONE);
+        Toast.makeText(activity, "DOne Store", Toast.LENGTH_SHORT);
+
+
+    }
+    private void performDataLoad(Uri filePath){
+
+        beforeLoad();
+
+        File dst = new File(Environment.getExternalStorageDirectory().getAbsolutePath(), FileConfig.dirName);
+//            File dst = new File(getApplicationContext().getExternalFilesDir(null).getAbsolutePath(), FileConfig.dirName);
+        File dstFile = new File(dst, FileConfig.fileName);
+        File srcFile = new File(Environment.getExternalStorageDirectory().getAbsolutePath(), filePath.getPath().split(":")[1]);
+        if(srcFile.exists()){
+            Log.e("file select" , "src exists");
+        }
+
+        try{
+            FileChannel source = new FileInputStream(srcFile).getChannel();
+            FileChannel destination = new FileOutputStream(dstFile).getChannel();
+            destination.transferFrom(source, 0, source.size());
+
+            Log.e("In copy", "completed");
+        } catch (FileNotFoundException e) {
+            Log.e("In copy", e.getMessage());
+        } catch (IOException e) {
+            Log.e("In copy", e.getMessage());
+        }
+
+
+        boolean notEmpty = OwnerDataManager.csvDataToDB(filePath, activity);
+
+        afterLoad();
+
+        if(notEmpty)
+            startActivity(new Intent(FileSelectActivity.this, MainActivity.class));
+    }
+
+    private final class DataStoreOperation extends AsyncTask<Void, Void, Boolean> {
 
         Uri filePath;
 
@@ -86,19 +155,43 @@ public class FileSelectActivity extends AppCompatActivity {
         }
 
         @Override
-        protected String doInBackground(Void... voids) {
-            OwnerDataManager.csvDataToDB(filePath, activity);
-            return null;
+        protected Boolean doInBackground(Void... voids) {
+            File dst = new File(Environment.getExternalStorageDirectory().getAbsolutePath(), FileConfig.dirName);
+//            File dst = new File(getApplicationContext().getExternalFilesDir(null).getAbsolutePath(), FileConfig.dirName);
+            File dstFile = new File(dst, FileConfig.fileName);
+            File srcFile = new File(Environment.getExternalStorageDirectory().getAbsolutePath(), filePath.getPath().split(":")[1]);
+            if(srcFile.exists()){
+                Log.e("file select" , "src exists");
+            }
+
+            try{
+                FileChannel source = new FileInputStream(srcFile).getChannel();
+                FileChannel destination = new FileOutputStream(dstFile).getChannel();
+                destination.transferFrom(source, 0, source.size());
+
+                Log.e("In copy", "completed");
+            } catch (FileNotFoundException e) {
+                Log.e("In copy", e.getMessage());
+            } catch (IOException e) {
+                Log.e("In copy", e.getMessage());
+            }
+
+
+            boolean notEmpty = OwnerDataManager.csvDataToDB(filePath, activity);
+            return notEmpty;
         }
 
         @Override
-        protected void onPostExecute(String result) {
+        protected void onPostExecute(Boolean result) {
             super.onPostExecute(result);
             outAnimation = new AlphaAnimation(1f, 0f);
             outAnimation.setDuration(200);
             progressHolder.setAnimation(outAnimation);
             progressHolder.setVisibility(View.GONE);
             Toast.makeText(activity, "DOne Store", Toast.LENGTH_SHORT);
+
+            if(result)
+                startActivity(new Intent(FileSelectActivity.this, MainActivity.class));
         }
     }
 
